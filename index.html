@@ -1,1 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVEDOW Audio Mixer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<div class="app">
+
+    <header>
+        <h1>AVEDOW</h1>
+        <p>Audio Mixer & Equalizer</p>
+    </header>
+
+    <main>
+
+        <section class="panel">
+            <h2>🎵 MP3 Player</h2>
+
+            <input
+                type="file"
+                id="audioFile"
+                accept="audio/*"
+            >
+
+            <audio id="audioPlayer" controls></audio>
+        </section>
+
+
+        <section class="panel">
+            <h2>🎚️ Equalizer</h2>
+
+            <div class="equalizer">
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>60Hz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>120Hz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>250Hz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>500Hz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>1KHz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>2KHz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>4KHz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>8KHz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>12KHz</span>
+                </div>
+
+                <div class="eq-band">
+                    <input type="range" min="-12" max="12" value="0">
+                    <span>16KHz</span>
+                </div>
+
+            </div>
+
+            <div class="buttons">
+                <button id="flat">FLAT</button>
+                <button id="bass">BASS BOOST</button>
+                <button id="reset">RESET</button>
+            </div>
+
+        </section>
+
+
+        <section class="panel">
+
+            <h2>🔊 Volume</h2>
+
+            <input
+                type="range"
+                id="volume"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+            >
+
+        </section>
+
+
+        <section class="panel">
+
+            <h2>▶️ YouTube</h2>
+
+            <input
+                type="text"
+                id="youtubeID"
+                placeholder="Masukkan ID video YouTube"
+            >
+
+            <button id="loadYoutube">
+                LOAD YOUTUBE
+            </button>
+
+            <div id="youtubePlayer"></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
