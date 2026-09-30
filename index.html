@@ -3,347 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AVEDOW Audio Studio</title>
+  <title>AVEDOW Audio Mixer</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="app">
+  <div class="app">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="brand">
-      <div class="brand-logo">A</div>
-      <div>
-        <strong>AVEDOW</strong>
-        <span>AUDIO STUDIO</span>
+    <h1>AVEDOW AUDIO MIXER</h1>
+    <p class="subtitle">MP3 Equalizer Studio</p>
+
+    <div class="player">
+
+      <div class="cover">♫</div>
+
+      <h2 id="songName">Belum ada lagu</h2>
+      <p id="status">Pilih file audio</p>
+
+      <input
+        type="file"
+        id="fileInput"
+        accept="audio/*"
+        hidden
+      >
+
+      <button id="chooseBtn">
+        Pilih Lagu
+      </button>
+
+      <audio id="audio" controls></audio>
+
+      <div class="buttons">
+        <button id="playBtn">▶ Play</button>
+        <button id="pauseBtn">Ⅱ Pause</button>
+        <button id="stopBtn">■ Stop</button>
       </div>
+
     </div>
 
-    <nav>
-      <button class="nav-item active">
-        <span>◉</span> Studio
-      </button>
 
-      <button class="nav-item">
-        <span>♫</span> Library
-      </button>
+    <div class="panel">
 
-      <button class="nav-item">
-        <span>◈</span> Equalizer
-      </button>
+      <h2>Equalizer</h2>
 
-      <button class="nav-item">
-        <span>⚙</span> Settings
-      </button>
-    </nav>
+      <div class="eq">
 
-    <div class="sidebar-bottom">
-      <div class="pro-card">
-        <div class="pro-icon">✦</div>
         <div>
-          <b>AVEDOW PRO</b>
-          <small>Professional Audio</small>
-        </div>
-      </div>
-    </div>
-  </aside>
-
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <header class="topbar">
-      <div>
-        <span class="eyebrow">AUDIO WORKSPACE</span>
-        <h1>Studio Mixer</h1>
-      </div>
-
-      <div class="top-actions">
-        <button id="themeBtn" class="icon-btn">☼</button>
-        <button id="uploadTop" class="upload-btn">＋ Import Audio</button>
-      </div>
-    </header>
-
-
-    <!-- NOW PLAYING -->
-    <section class="now-playing glass">
-
-      <div class="cover">
-        <div class="cover-inner">♫</div>
-      </div>
-
-      <div class="track-info">
-        <span class="status">NOW PLAYING</span>
-        <h2 id="trackName">No audio selected</h2>
-        <p id="trackMeta">Import an MP3, WAV or other supported audio file</p>
-
-        <div class="progress-area">
-          <span id="currentTime">00:00</span>
-
-          <input
-            type="range"
-            id="progress"
-            min="0"
-            max="100"
-            value="0"
-          >
-
-          <span id="duration">00:00</span>
+          <input class="eqSlider" data-index="0"
+                 type="range" min="-12" max="12" value="0">
+          <span>60Hz</span>
         </div>
 
-        <div class="player-controls">
-          <button id="backBtn">↶</button>
-          <button id="playBtn" class="play-btn">▶</button>
-          <button id="forwardBtn">↷</button>
-
-          <div class="volume-box">
-            <span>🔊</span>
-            <input
-              id="volume"
-              type="range"
-              min="0"
-              max="100"
-              value="80"
-            >
-          </div>
+        <div>
+          <input class="eqSlider" data-index="1"
+                 type="range" min="-12" max="12" value="0">
+          <span>120Hz</span>
         </div>
-      </div>
 
-    </section>
+        <div>
+          <input class="eqSlider" data-index="2"
+                 type="range" min="-12" max="12" value="0">
+          <span>250Hz</span>
+        </div>
 
+        <div>
+          <input class="eqSlider" data-index="3"
+                 type="range" min="-12" max="12" value="0">
+          <span>500Hz</span>
+        </div>
 
-    <div class="workspace">
+        <div>
+          <input class="eqSlider" data-index="4"
+                 type="range" min="-12" max="12" value="0">
+          <span>1kHz</span>
+        </div>
 
-      <!-- LEFT -->
-      <div class="left-column">
+        <div>
+          <input class="eqSlider" data-index="5"
+                 type="range" min="-12" max="12" value="0">
+          <span>2kHz</span>
+        </div>
 
-        <!-- VISUALIZER -->
-        <section class="panel visualizer-panel">
-          <div class="panel-header">
-            <div>
-              <span class="eyebrow">LIVE SIGNAL</span>
-              <h3>Audio Visualizer</h3>
-            </div>
+        <div>
+          <input class="eqSlider" data-index="6"
+                 type="range" min="-12" max="12" value="0">
+          <span>4kHz</span>
+        </div>
 
-            <span class="live-dot">LIVE</span>
-          </div>
+        <div>
+          <input class="eqSlider" data-index="7"
+                 type="range" min="-12" max="12" value="0">
+          <span>8kHz</span>
+        </div>
 
-          <canvas id="visualizer"></canvas>
-        </section>
+        <div>
+          <input class="eqSlider" data-index="8"
+                 type="range" min="-12" max="12" value="0">
+          <span>12kHz</span>
+        </div>
 
-
-        <!-- EQ -->
-        <section class="panel">
-
-          <div class="panel-header">
-            <div>
-              <span class="eyebrow">10 BAND</span>
-              <h3>Professional Equalizer</h3>
-            </div>
-
-            <button id="resetEq" class="small-btn">
-              Reset
-            </button>
-          </div>
-
-          <div class="eq-container" id="eqContainer"></div>
-
-          <div class="eq-labels">
-            <span>60</span>
-            <span>120</span>
-            <span>250</span>
-            <span>500</span>
-            <span>1K</span>
-            <span>2K</span>
-            <span>4K</span>
-            <span>8K</span>
-            <span>12K</span>
-            <span>16K</span>
-          </div>
-
-        </section>
-
-
-        <!-- PRESETS -->
-        <section class="panel">
-
-          <div class="panel-header">
-            <div>
-              <span class="eyebrow">SOUND PROFILE</span>
-              <h3>EQ Presets</h3>
-            </div>
-          </div>
-
-          <div class="presets">
-
-            <button data-preset="flat" class="preset active">
-              <b>Flat</b>
-              <span>Natural</span>
-            </button>
-
-            <button data-preset="bass" class="preset">
-              <b>Bass Boost</b>
-              <span>Deep Low</span>
-            </button>
-
-            <button data-preset="vocal" class="preset">
-              <b>Vocal</b>
-              <span>Clear Voice</span>
-            </button>
-
-            <button data-preset="rock" class="preset">
-              <b>Rock</b>
-              <span>Power</span>
-            </button>
-
-            <button data-preset="electronic" class="preset">
-              <b>Electronic</b>
-              <span>Wide</span>
-            </button>
-
-          </div>
-
-        </section>
+        <div>
+          <input class="eqSlider" data-index="9"
+                 type="range" min="-12" max="12" value="0">
+          <span>16kHz</span>
+        </div>
 
       </div>
 
-
-      <!-- RIGHT -->
-      <aside class="right-column">
-
-        <!-- QUICK CONTROL -->
-        <section class="panel">
-
-          <div class="panel-header">
-            <div>
-              <span class="eyebrow">MASTER</span>
-              <h3>Quick Control</h3>
-            </div>
-          </div>
-
-          <div class="control">
-
-            <div class="control-title">
-              <span>Master Volume</span>
-              <strong id="volumeValue">80%</strong>
-            </div>
-
-            <input
-              id="masterVolume"
-              type="range"
-              min="0"
-              max="100"
-              value="80"
-            >
-
-          </div>
-
-
-          <div class="control">
-
-            <div class="control-title">
-              <span>Bass Boost</span>
-              <strong id="bassValue">0 dB</strong>
-            </div>
-
-            <input
-              id="bassBoost"
-              type="range"
-              min="0"
-              max="12"
-              value="0"
-            >
-
-          </div>
-
-
-          <div class="control">
-
-            <div class="control-title">
-              <span>Treble</span>
-              <strong id="trebleValue">0 dB</strong>
-            </div>
-
-            <input
-              id="treble"
-              type="range"
-              min="-12"
-              max="12"
-              value="0"
-            >
-
-          </div>
-
-        </section>
-
-
-        <!-- IMPORT -->
-        <section class="panel import-panel">
-
-          <div class="import-icon">♫</div>
-
-          <h3>Import Audio</h3>
-
-          <p>
-            Add your local audio file to the AVEDOW mixer.
-          </p>
-
-          <button id="uploadBtn" class="primary-btn">
-            Select Audio
-          </button>
-
-          <input
-            id="audioFile"
-            type="file"
-            accept="audio/*"
-            hidden
-          >
-
-        </section>
-
-
-        <!-- SOURCE -->
-        <section class="panel">
-
-          <div class="panel-header">
-            <div>
-              <span class="eyebrow">SOURCE</span>
-              <h3>Audio Source</h3>
-            </div>
-          </div>
-
-          <div class="source-row active">
-            <div class="source-icon">♫</div>
-
-            <div>
-              <b>Local Audio</b>
-              <small>MP3 / WAV / OGG / M4A</small>
-            </div>
-
-            <span class="source-status">●</span>
-          </div>
-
-        </section>
-
-      </aside>
+      <button id="resetBtn">
+        Reset EQ
+      </button>
 
     </div>
 
 
-    <footer>
-      <span>AVEDOW AUDIO STUDIO</span>
-      <span>Professional Web Audio Mixer</span>
-    </footer>
+    <div class="panel">
 
-  </main>
+      <h2>Volume</h2>
 
-</div>
+      <input
+        id="volume"
+        type="range"
+        min="0"
+        max="100"
+        value="80"
+      >
 
-<audio id="audio"></audio>
+      <span id="volumeText">80%</span>
 
-<script src="script.js"></script>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
-    </html>
+</html>
