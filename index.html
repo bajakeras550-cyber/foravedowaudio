@@ -3,139 +3,496 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AVEDOW Audio Mixer</title>
+
+    <title>AVEDOW • Audio Mixer</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 </head>
 
 <body>
 
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+
 <div class="app">
 
-    <header>
-        <h1>AVEDOW</h1>
-        <p>Audio Mixer & Equalizer</p>
-    </header>
+    <!-- SIDEBAR -->
 
-    <main>
+    <aside class="sidebar">
 
-        <section class="panel">
-            <h2>🎵 MP3 Player</h2>
+        <div class="brand">
+            <div class="brand-icon">A</div>
 
-            <input
-                type="file"
-                id="audioFile"
-                accept="audio/*"
-            >
-
-            <audio id="audioPlayer" controls></audio>
-        </section>
-
-
-        <section class="panel">
-            <h2>🎚️ Equalizer</h2>
-
-            <div class="equalizer">
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>60Hz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>120Hz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>250Hz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>500Hz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>1KHz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>2KHz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>4KHz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>8KHz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>12KHz</span>
-                </div>
-
-                <div class="eq-band">
-                    <input type="range" min="-12" max="12" value="0">
-                    <span>16KHz</span>
-                </div>
-
+            <div>
+                <strong>AVEDOW</strong>
+                <span>AUDIO LAB</span>
             </div>
+        </div>
 
-            <div class="buttons">
-                <button id="flat">FLAT</button>
-                <button id="bass">BASS BOOST</button>
-                <button id="reset">RESET</button>
-            </div>
+        <nav>
 
-        </section>
-
-
-        <section class="panel">
-
-            <h2>🔊 Volume</h2>
-
-            <input
-                type="range"
-                id="volume"
-                min="0"
-                max="1"
-                step="0.01"
-                value="1"
-            >
-
-        </section>
-
-
-        <section class="panel">
-
-            <h2>▶️ YouTube</h2>
-
-            <input
-                type="text"
-                id="youtubeID"
-                placeholder="Masukkan ID video YouTube"
-            >
-
-            <button id="loadYoutube">
-                LOAD YOUTUBE
+            <button class="nav-item active">
+                <span>◈</span>
+                Mixer
             </button>
+
+            <button class="nav-item">
+                <span>♫</span>
+                Library
+            </button>
+
+            <button class="nav-item">
+                <span>◉</span>
+                Visualizer
+            </button>
+
+            <button class="nav-item">
+                <span>⚙</span>
+                Settings
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span>AVEDOW ENGINE</span>
+            <b>v1.0</b>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <span class="eyebrow">PRO AUDIO MIXER</span>
+                <h1>Studio Mixer</h1>
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-button" id="themeButton">
+                    ◐
+                </button>
+
+                <div class="status">
+                    <i></i>
+                    AUDIO ENGINE
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PLAYER -->
+
+        <section class="player-card">
+
+            <div class="album">
+
+                <div class="album-art">
+                    <div class="art-ring"></div>
+                    <span>AV</span>
+                </div>
+
+                <div class="track-info">
+
+                    <span class="track-label">
+                        NOW PLAYING
+                    </span>
+
+                    <h2 id="trackName">
+                        No audio selected
+                    </h2>
+
+                    <p id="trackArtist">
+                        Upload an MP3 / audio file
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="wave">
+
+                <canvas id="visualizer"></canvas>
+
+            </div>
+
+
+            <div class="player-controls">
+
+                <button class="control-button" id="backButton">
+                    ↶
+                </button>
+
+                <button
+                    class="play-button"
+                    id="playButton"
+                >
+                    ▶
+                </button>
+
+                <button class="control-button" id="forwardButton">
+                    ↷
+                </button>
+
+            </div>
+
+
+            <div class="progress-area">
+
+                <span id="currentTime">00:00</span>
+
+                <input
+                    type="range"
+                    id="progress"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+                <span id="duration">00:00</span>
+
+            </div>
+
+
+            <audio id="audioPlayer"></audio>
+
+        </section>
+
+
+        <!-- SOURCE -->
+
+        <section class="source-grid">
+
+            <div class="source-card">
+
+                <div class="source-icon">♫</div>
+
+                <div>
+                    <strong>Local Audio</strong>
+                    <span>MP3, WAV, OGG, AAC</span>
+                </div>
+
+                <label class="upload-button">
+
+                    Choose File
+
+                    <input
+                        type="file"
+                        id="audioFile"
+                        accept="audio/*"
+                    >
+
+                </label>
+
+            </div>
+
+
+            <div class="source-card">
+
+                <div class="source-icon youtube-icon">
+                    ▶
+                </div>
+
+                <div>
+                    <strong>YouTube</strong>
+                    <span>Load video player</span>
+                </div>
+
+                <button
+                    class="upload-button"
+                    id="youtubeOpen"
+                >
+                    Add Source
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- EQ -->
+
+        <section class="mixer-panel">
+
+            <div class="section-header">
+
+                <div>
+                    <span class="eyebrow">FREQUENCY CONTROL</span>
+                    <h2>10-Band Equalizer</h2>
+                </div>
+
+                <div class="preset-area">
+
+                    <span>PRESET</span>
+
+                    <select id="preset">
+
+                        <option value="flat">
+                            Flat
+                        </option>
+
+                        <option value="bass">
+                            Deep Bass
+                        </option>
+
+                        <option value="vocal">
+                            Vocal
+                        </option>
+
+                        <option value="rock">
+                            Rock
+                        </option>
+
+                        <option value="electronic">
+                            Electronic
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="eq-container">
+
+                <div class="db-scale">
+
+                    <span>+12</span>
+                    <span>+6</span>
+                    <span>0</span>
+                    <span>-6</span>
+                    <span>-12</span>
+
+                </div>
+
+
+                <div class="equalizer">
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>60</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>120</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>250</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>500</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>1K</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>2K</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>4K</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>8K</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>12K</label>
+                        <small>Hz</small>
+                    </div>
+
+                    <div class="eq-band">
+                        <output>0</output>
+                        <input type="range" min="-12" max="12" value="0">
+                        <label>16K</label>
+                        <small>Hz</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MASTER -->
+
+        <section class="bottom-grid">
+
+            <div class="master-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">OUTPUT</span>
+                        <h2>Master Control</h2>
+                    </div>
+
+                    <strong id="volumeValue">
+                        100%
+                    </strong>
+
+                </div>
+
+                <input
+                    class="master-slider"
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="1"
+                >
+
+                <div class="master-labels">
+                    <span>MIN</span>
+                    <span>MASTER</span>
+                    <span>MAX</span>
+                </div>
+
+            </div>
+
+
+            <div class="master-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <span class="eyebrow">QUICK MODE</span>
+                        <h2>Sound Profile</h2>
+                    </div>
+
+                </div>
+
+                <div class="quick-buttons">
+
+                    <button data-profile="flat">
+                        Flat
+                    </button>
+
+                    <button data-profile="bass">
+                        Bass
+                    </button>
+
+                    <button data-profile="vocal">
+                        Vocal
+                    </button>
+
+                    <button data-profile="rock">
+                        Rock
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- YOUTUBE -->
+
+        <section
+            class="youtube-panel"
+            id="youtubePanel"
+        >
+
+            <div class="section-header">
+
+                <div>
+                    <span class="eyebrow">ONLINE SOURCE</span>
+                    <h2>YouTube Player</h2>
+                </div>
+
+                <button id="closeYoutube">
+                    ×
+                </button>
+
+            </div>
+
+            <div class="youtube-input">
+
+                <input
+                    type="text"
+                    id="youtubeID"
+                    placeholder="Paste YouTube video ID"
+                >
+
+                <button id="loadYoutube">
+                    LOAD
+                </button>
+
+            </div>
 
             <div id="youtubePlayer"></div>
 
         </section>
 
+
+        <footer>
+            AVEDOW AUDIO LAB • PROFESSIONAL WEB MIXER
+        </footer>
+
     </main>
 
 </div>
 
+
 <script src="script.js"></script>
 
 </body>
-</html>
+                                     </html>
